@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "pages-build": "ng build --configuration production --base-href 'https://pontus-broberg.github.io/linntuswedding/'",
-    "pages-deploy": "npx angular-cli-ghpages --dir=dist/linntusWedding/browser --no-silent"
+    "pages-build": "ng build --configuration production --base-href /",
+    "pages-deploy": "npx angular-cli-ghpages --dir=dist/linntusWedding/browser --cname=linntuswedding.se --no-silent"
   },
   "prettier": {
     "overrides": [
