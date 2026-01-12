@@ -5,9 +5,59 @@ $base-font-color: #9CAF88;
 $primary-bg: lighten($base-font-color, 38%);
 $secondary-bg: lighten($base-font-color, 28%);
 $accent: darken($base-font-color, 20%);
+$banner-bg: mix($primary-bg, #f2ead6, 60%); // warm beige derived from primary background
 $text-main: darken($base-font-color, 35%);
+$banner-text: darken($text-main, 8%);
 $font-main: 'Montserrat', Arial, sans-serif;
 $font-cursive: 'Great Vibes', cursive;
+
+.countdown-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $banner-bg;
+  color: $banner-text;
+  font-weight: 600;
+  font-size: 40px;
+  font-family: $font-main;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 0 20px;
+}
+
+.count-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.count-number {
+  font-size: 40px;
+  line-height: 1;
+  font-family: $font-main;
+  color: $accent;
+}
+
+.count-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  color: darken($text-main, 5%);
+}
+
+.count-sep {
+  font-size: 40px;
+  color: lighten($text-main, 10%);
+  margin-bottom: 22px;
+  line-height: 1;
+}
 
 html, body {
   height: 100%;
@@ -61,6 +111,7 @@ html, body {
   font-size: 4rem;
   color: $accent;
   margin-bottom: 0em;
+  margin-top: 60px;
   font-weight: normal;
   letter-spacing: 1px;
 }
