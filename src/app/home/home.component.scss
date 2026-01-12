@@ -1,24 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
 
 $base-font-color: #9CAF88; 
 $primary-bg: lighten($base-font-color, 38%);
 $secondary-bg: lighten($base-font-color, 28%);
 $accent: darken($base-font-color, 20%);
-$banner-bg: mix($primary-bg, #f2ead6, 60%); // warm beige derived from primary background
 $text-main: darken($base-font-color, 35%);
-$banner-text: darken($text-main, 8%);
 $font-main: 'Montserrat', Arial, sans-serif;
 $font-cursive: 'Great Vibes', cursive;
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: $font-main;
-  background: $primary-bg;
-  color: $base-font-color;
-}
 
 .main {
   min-height: 100vh;
