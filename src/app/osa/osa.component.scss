@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
+
+$base-font-color: #9CAF88; 
+$primary-bg: lighten($base-font-color, 38%);
+$secondary-bg: lighten($base-font-color, 28%);
+$accent: darken($base-font-color, 20%);
+$text-main: darken($base-font-color, 35%);
+$font-main: 'Montserrat', Arial, sans-serif;
+$font-cursive: 'Great Vibes', cursive;
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $primary-bg 60%, $secondary-bg 100%);
+  padding-top: 100px; // Account for fixed countdown header
+}
+
+.content {
+  background: #fff;
+  padding: 3rem 2.5rem 2.5rem 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(60, 50, 30, 0.08);
+  text-align: center;
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 1rem;
+}
+
+.page-title {
+  font-family: $font-cursive;
+  font-size: 4rem;
+  color: $accent;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.placeholder-text {
+  font-family: $font-main;
+  font-size: 1.2rem;
+  color: $text-main;
+  margin: 0;
+}
