@@ -1,14 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
-
-$base-font-color: #9CAF88; 
-$primary-bg: lighten($base-font-color, 38%);
-$secondary-bg: lighten($base-font-color, 28%);
-$accent: darken($base-font-color, 20%);
-$banner-bg: mix($primary-bg, #f2ead6, 60%);
-$text-main: darken($base-font-color, 35%);
-$banner-text: darken($text-main, 8%);
-$font-main: 'Montserrat', Arial, sans-serif;
-$font-cursive: 'Great Vibes', cursive;
+@use '../variables' as *;
 
 .countdown-banner {
   position: fixed;

@@ -13,7 +13,9 @@ export class CountdownHeaderComponent implements OnInit, OnDestroy {
   protected seconds = 0;
 
   private countdownTimer?: number;
-  private target = new Date(2026, 7, 22, 0, 0, 0);
+
+  private target = new Date(2026, 7, 22, 0, 0, 0); // Aug 22, 00:00 local time
+
 
   ngOnInit(): void {
     this.updateCountdown();

@@ -1,0 +1,26 @@
+@forward './variables';
+@use './variables' as *;
+
+// Common page layout styles
+.main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $primary-bg 60%, $secondary-bg 100%);
+  padding-top: 100px;
+}
+
+.content {
+  background: #fff;
+  padding: 3rem 2.5rem 2.5rem 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(60, 50, 30, 0.08);
+  text-align: center;
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 1rem;
+}
