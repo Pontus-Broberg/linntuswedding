@@ -1,11 +1,13 @@
+@use 'sass:color';
+
 // Color Variables
 $base-font-color: #9CAF88; 
-$primary-bg: lighten($base-font-color, 38%);
-$secondary-bg: lighten($base-font-color, 28%);
-$accent: darken($base-font-color, 20%);
-$banner-bg: mix($primary-bg, #f2ead6, 60%);
-$text-main: darken($base-font-color, 35%);
-$banner-text: darken($text-main, 8%);
+$primary-bg: color.adjust($base-font-color, $lightness: 38%);
+$secondary-bg: color.adjust($base-font-color, $lightness: 28%);
+$accent: color.adjust($base-font-color, $lightness: -20%);
+$banner-bg: color.mix($primary-bg, #f2ead6, 60%);
+$text-main: color.adjust($base-font-color, $lightness: -35%);
+$banner-text: color.adjust($text-main, $lightness: -8%);
 
 // Typography
 $font-main: 'Montserrat', Arial, sans-serif;

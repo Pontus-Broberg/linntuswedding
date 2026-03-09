@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 
 .countdown-banner {
@@ -38,12 +39,12 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: 4px;
-  color: darken($text-main, 5%);
+  color: color.adjust($text-main, $lightness: -5%);
 }
 
 .count-sep {
   font-size: 40px;
-  color: lighten($text-main, 10%);
+  color: color.adjust($text-main, $lightness: 10%);
   margin-bottom: 22px;
   line-height: 1;
 }

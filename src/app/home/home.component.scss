@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../shared' as *;
 
 .image-grid {
@@ -6,10 +7,11 @@
   margin-top: 1.5rem;
 }
 
-.image-placeholder {
+.gallery-image {
   width: 100%;
   display: block;
   border-radius: 0.7rem;
+  object-fit: cover;
   background: $base-font-color;
   margin-bottom: 1rem;
   box-shadow: 0 2px 8px rgba(60, 50, 30, 0.06);
@@ -20,7 +22,7 @@
   font-family: $font-cursive;
   font-size: 4rem;
   color: $accent;
-  margin-bottom: 0em;
+  margin-bottom: 0;
   margin-top: 60px;
   font-weight: normal;
   letter-spacing: 1px;
@@ -28,6 +30,7 @@
 
 .subtitle {
   margin: 0;
+  font-size: 3rem;
 }
 
 .wedding-dates {
@@ -66,7 +69,7 @@
 .footer-info {
   text-align: center;
   font-size: 1rem;
-  color: lighten($text-main, 20%);
+  color: color.adjust($text-main, $lightness: 20%);
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -79,5 +82,9 @@
   .wedding-title {
     font-size: 3rem;
     text-wrap: nowrap;
+  }
+
+  .subtitle {
+    font-size: 2.2rem;
   }
 }

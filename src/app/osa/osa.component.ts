@@ -3,10 +3,8 @@ import { CountdownHeaderComponent } from '../countdown-header/countdown-header.c
 
 @Component({
   selector: 'app-osa',
-  standalone: true,
   imports: [CountdownHeaderComponent],
   templateUrl: './osa.component.html',
-  styleUrls: ['./osa.component.scss']
+  styleUrl: './osa.component.scss'
 })
-export class OsaComponent {
-}
+export class OsaComponent {}

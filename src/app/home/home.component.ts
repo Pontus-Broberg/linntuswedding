@@ -1,19 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { IonButton } from '@ionic/angular/standalone';
 import { CountdownHeaderComponent } from '../countdown-header/countdown-header.component';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [IonButton, CountdownHeaderComponent],
+  imports: [IonButton, RouterLink, CountdownHeaderComponent],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrl: './home.component.scss'
 })
-export class HomeComponent {
-  constructor(private router: Router) {}
-
-  navigateToOsa(): void {
-    this.router.navigate(['/osa']);
-  }
-}
+export class HomeComponent {}

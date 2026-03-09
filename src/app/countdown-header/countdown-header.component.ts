@@ -1,49 +1,49 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-countdown-header',
-  standalone: true,
   templateUrl: './countdown-header.component.html',
-  styleUrls: ['./countdown-header.component.scss']
+  styleUrl: './countdown-header.component.scss'
 })
-export class CountdownHeaderComponent implements OnInit, OnDestroy {
-  protected days = 0;
-  protected hours = 0;
-  protected minutes = 0;
-  protected seconds = 0;
+export class CountdownHeaderComponent implements OnInit {
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly target = new Date(2026, 7, 22, 0, 0, 0); // Aug 22, 00:00
 
-  private countdownTimer?: number;
+  protected readonly days = signal(0);
+  protected readonly hours = signal(0);
+  protected readonly minutes = signal(0);
+  protected readonly seconds = signal(0);
 
-  private target = new Date(2026, 7, 22, 0, 0, 0); // Aug 22, 00:00 local time
-
+  protected readonly paddedHours = computed(() => this.pad(this.hours()));
+  protected readonly paddedMinutes = computed(() => this.pad(this.minutes()));
+  protected readonly paddedSeconds = computed(() => this.pad(this.seconds()));
 
   ngOnInit(): void {
     this.updateCountdown();
-    this.countdownTimer = window.setInterval(() => this.updateCountdown(), 1000);
-  }
-
-  ngOnDestroy(): void {
-    if (this.countdownTimer) {
-      clearInterval(this.countdownTimer);
-    }
+    const timer = setInterval(() => this.updateCountdown(), 1000);
+    this.destroyRef.onDestroy(() => clearInterval(timer));
   }
 
   private updateCountdown(): void {
     const now = new Date();
-    let diff = Math.max(0, this.target.getTime() - now.getTime());
+    const diff = Math.max(0, this.target.getTime() - now.getTime());
+
     if (diff <= 0) {
-      this.days = this.hours = this.minutes = this.seconds = 0;
+      this.days.set(0);
+      this.hours.set(0);
+      this.minutes.set(0);
+      this.seconds.set(0);
       return;
     }
 
     const totalSeconds = Math.floor(diff / 1000);
-    this.days = Math.floor(totalSeconds / 86400);
-    this.hours = Math.floor((totalSeconds % 86400) / 3600);
-    this.minutes = Math.floor((totalSeconds % 3600) / 60);
-    this.seconds = totalSeconds % 60;
+    this.days.set(Math.floor(totalSeconds / 86400));
+    this.hours.set(Math.floor((totalSeconds % 86400) / 3600));
+    this.minutes.set(Math.floor((totalSeconds % 3600) / 60));
+    this.seconds.set(totalSeconds % 60);
   }
 
-  protected pad(n: number): string {
+  private pad(n: number): string {
     return n < 10 ? `0${n}` : `${n}`;
   }
 }
