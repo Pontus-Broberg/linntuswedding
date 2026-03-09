@@ -121,7 +121,18 @@
           </div>
         }
 
-        <button type="submit" class="submit-btn">Skicka</button>
+        @if (submitError) {
+          <p class="submit-error">Något gick fel. Försök igen eller kontakta oss direkt:<br /> <a href="mailto:linntuswedding@gmail.com">linntuswedding@gmail.com</a></p>
+        }
+
+        <button type="submit" class="submit-btn" [disabled]="submitting">
+          @if (submitting) {
+            <span class="spinner"></span>
+            Skickar...
+          } @else {
+            Skicka
+          }
+        </button>
       </form>
     } @else {
       <div class="confirmation">

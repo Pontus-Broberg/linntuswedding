@@ -3,6 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CountdownHeaderComponent } from '../countdown-header/countdown-header.component';
+import { OsaService } from './osa.service';
 
 @Component({
   selector: 'app-osa',
@@ -12,6 +13,7 @@ import { CountdownHeaderComponent } from '../countdown-header/countdown-header.c
 })
 export class OsaComponent {
   private fb = inject(NonNullableFormBuilder);
+  private osaService = inject(OsaService);
   private emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   private phonePattern = /^(?=(?:.*\d){7})[0-9\s\-+()]{7,20}$/;
 
@@ -28,6 +30,8 @@ export class OsaComponent {
   attending = toSignal(this.form.controls.attending.valueChanges, { initialValue: '' });
 
   submitted = false;
+  submitting = false;
+  submitError = false;
 
   constructor() {
     effect(() => {
@@ -60,7 +64,20 @@ export class OsaComponent {
       this.form.markAllAsTouched();
       return;
     }
-    this.submitted = true;
+
+    this.submitting = true;
+    this.submitError = false;
+
+    this.osaService.submit(this.form.getRawValue()).subscribe({
+      next: () => {
+        this.submitting = false;
+        this.submitted = true;
+      },
+      error: () => {
+        this.submitting = false;
+        this.submitError = true;
+      },
+    });
   }
 
   private sanitizeFields() {
@@ -73,7 +90,7 @@ export class OsaComponent {
 
   private sanitize(value: string): string {
     let sanitized = value.trim();
-    while (/^[=@\t\r]/.test(sanitized)) {
+    while (/^[=+\-@\t\r]/.test(sanitized)) {
       sanitized = sanitized.slice(1).trim();
     }
     return sanitized;
@@ -82,5 +99,6 @@ export class OsaComponent {
   resetForm() {
     this.form.reset();
     this.submitted = false;
+    this.submitError = false;
   }
 }

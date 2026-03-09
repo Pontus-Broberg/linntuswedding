@@ -221,22 +221,52 @@
   background: $accent;
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: background 0.2s, transform 0.1s, opacity 0.2s;
   align-self: center;
   -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: color.adjust($accent, $lightness: -8%);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
   @media (max-width: 500px) {
     width: 100%;
     padding: 0.85rem;
   }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.submit-error {
+  font-family: $font-main;
+  font-size: 0.9rem;
+  color: #c0392b;
+  text-align: center;
+  margin: 0;
 }
 
 .confirmation {
