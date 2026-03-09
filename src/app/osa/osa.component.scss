@@ -1,18 +1,251 @@
+@use 'sass:color';
 @use '../shared' as *;
 
 .page-title {
   font-family: $font-cursive;
   font-size: 4rem;
   color: $accent;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
   margin-top: 0;
   font-weight: normal;
   letter-spacing: 1px;
 }
 
-.placeholder-text {
+.form-intro {
   font-family: $font-main;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: $text-main;
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 500px) {
+  .page-title {
+    font-size: 3rem;
+  }
+
+  .form-intro {
+    font-size: 1rem;
+  }
+}
+
+.osa-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  label {
+    font-family: $font-main;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-main;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.3px;
+  }
+
+  input {
+    font-family: $font-main;
+    font-size: 16px; // prevent iOS auto-zoom
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid color.adjust($base-font-color, $lightness: 20%);
+    border-radius: 0.5rem;
+    background: #fff;
+    color: $text-main;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    width: 100%;
+
+    &::placeholder {
+      color: color.adjust($base-font-color, $lightness: 10%);
+    }
+
+    &:focus {
+      border-color: $accent;
+      box-shadow: 0 0 0 3px color.adjust($base-font-color, $lightness: 30%, $alpha: -0.5);
+    }
+
+    &.invalid {
+      border-color: #c0392b;
+    }
+  }
+
+  textarea {
+    font-family: $font-main;
+    font-size: 16px;
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid color.adjust($base-font-color, $lightness: 20%);
+    border-radius: 0.5rem;
+    background: #fff;
+    color: $text-main;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    width: 100%;
+    resize: vertical;
+
+    &::placeholder {
+      color: color.adjust($base-font-color, $lightness: 10%);
+    }
+
+    &:focus {
+      border-color: $accent;
+      box-shadow: 0 0 0 3px color.adjust($base-font-color, $lightness: 30%, $alpha: -0.5);
+    }
+  }
+}
+
+.required {
+  color: #c0392b;
+}
+
+.error-msg {
+  font-family: $font-main;
+  font-size: 0.78rem;
+  color: #c0392b;
+  margin-top: 0.25rem;
+}
+
+.radio-group {
+  border: none;
+  padding: 0;
   margin: 0;
+  text-align: left;
+
+  legend {
+    font-family: $font-main;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-main;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.3px;
+  }
+}
+
+.radio-options {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $font-main;
+  font-size: 0.95rem;
+  color: $text-main;
+  cursor: pointer;
+  padding: 0.55rem 1rem;
+  border: 1.5px solid color.adjust($base-font-color, $lightness: 20%);
+  border-radius: 0.5rem;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+
+  &:has(input:checked) {
+    border-color: $accent;
+    background: color.adjust($base-font-color, $lightness: 35%);
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.radio-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid color.adjust($base-font-color, $lightness: 10%);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.2s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $accent;
+    transition: transform 0.15s ease;
+  }
+
+  .radio-label:has(input:checked) & {
+    border-color: $accent;
+
+    &::after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+.submit-btn {
+  font-family: $font-main;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.75rem 2.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: $accent;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  align-self: center;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background: color.adjust($accent, $lightness: -8%);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    padding: 0.85rem;
+  }
+}
+
+.confirmation {
+  padding: 1.5rem 0;
+}
+
+.confirmation-text {
+  font-family: $font-main;
+  font-size: 1.15rem;
+  color: $accent;
+  font-weight: 500;
 }

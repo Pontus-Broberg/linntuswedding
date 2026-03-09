@@ -3,6 +3,134 @@
 <main class="main">
   <div class="content">
     <h1 class="page-title">OSA</h1>
-    <p class="placeholder-text">Placeholder text for OSA page</p>
+    @if (!submitted) {
+      <p class="form-intro">Vänligen fyll i formuläret nedan för att bekräfta din närvaro.</p>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="osa-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">Förnamn <span class="required">*</span></label>
+            <input
+              id="firstName"
+              type="text"
+              formControlName="firstName"
+              placeholder="Förnamn"
+              [class.invalid]="form.controls.firstName.touched && form.controls.firstName.invalid"
+            />
+            @if (form.controls.firstName.touched && form.controls.firstName.invalid) {
+              <span class="error-msg">Ange ditt förnamn</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Efternamn <span class="required">*</span></label>
+            <input
+              id="lastName"
+              type="text"
+              formControlName="lastName"
+              placeholder="Efternamn"
+              [class.invalid]="form.controls.lastName.touched && form.controls.lastName.invalid"
+            />
+            @if (form.controls.lastName.touched && form.controls.lastName.invalid) {
+              <span class="error-msg">Ange ditt efternamn</span>
+            }
+          </div>
+        </div>
+
+        <fieldset class="radio-group" [class.invalid]="form.controls.attending.touched && form.controls.attending.invalid">
+          <legend>Kommer du? <span class="required">*</span></legend>
+          <div class="radio-options">
+            <label class="radio-label">
+              <input type="radio" formControlName="attending" value="ja" />
+              <span class="radio-custom"></span>
+              Ja, jag kommer
+            </label>
+            <label class="radio-label">
+              <input type="radio" formControlName="attending" value="nej" />
+              <span class="radio-custom"></span>
+              Nej, jag kan tyvärr inte
+            </label>
+          </div>
+          @if (form.controls.attending.touched && form.controls.attending.invalid) {
+            <span class="error-msg">Välj ett alternativ</span>
+          }
+        </fieldset>
+
+        @if (form.controls.attending.value === 'ja') {
+          <fieldset class="radio-group" [class.invalid]="form.controls.fridayPredrinks.touched && form.controls.fridayPredrinks.invalid">
+            <legend>Kommer du på förmingel på fredag? <span class="required">*</span></legend>
+            <div class="radio-options">
+              <label class="radio-label">
+                <input type="radio" formControlName="fridayPredrinks" value="ja" />
+                <span class="radio-custom"></span>
+                Ja
+              </label>
+              <label class="radio-label">
+                <input type="radio" formControlName="fridayPredrinks" value="nej" />
+                <span class="radio-custom"></span>
+                Nej
+              </label>
+            </div>
+            @if (form.controls.fridayPredrinks.touched && form.controls.fridayPredrinks.invalid) {
+              <span class="error-msg">Välj ett alternativ</span>
+            }
+          </fieldset>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-post <span class="required">*</span></label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="namn@exempel.se"
+                [class.invalid]="form.controls.email.touched && form.controls.email.invalid"
+              />
+              @if (form.controls.email.touched && form.controls.email.invalid) {
+                <span class="error-msg">Ange en giltig e-postadress</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefonnummer <span class="required">*</span></label>
+              <input
+                id="phone"
+                type="tel"
+                formControlName="phone"
+                placeholder="07X-XXX XX XX"
+                [class.invalid]="form.controls.phone.touched && form.controls.phone.invalid"
+              />
+              @if (form.controls.phone.touched && form.controls.phone.invalid) {
+                <span class="error-msg">Ange ditt telefonnummer</span>
+              }
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dietary">Allergier eller matpreferenser</label>
+            <textarea
+              id="dietary"
+              formControlName="dietary"
+              placeholder="T.ex. glutenfri, laktosfri, vegetarian..."
+              rows="3"
+            ></textarea>
+          </div>
+        }
+
+        <button type="submit" class="submit-btn">Skicka</button>
+      </form>
+    } @else {
+      <div class="confirmation">
+        @if (form.value.attending === 'ja') {
+          <p class="confirmation-text">
+            Tack, {{ form.value.firstName }}! Din anmälan har registrerats.
+          </p>
+        } @else {
+          <p class="confirmation-text">
+            Tack för att du meddelade oss, {{ form.value.firstName }}. Vi hoppas vi ses en annan gång!
+          </p>
+        }
+      </div>
+    }
   </div>
 </main>
