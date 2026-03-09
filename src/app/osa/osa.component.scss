@@ -249,3 +249,53 @@
   color: $accent;
   font-weight: 500;
 }
+
+.confirmation-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
+.action-btn {
+  display: inline-block;
+  font-family: $font-main;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &.primary {
+    background: $accent;
+    color: #fff;
+
+    &:hover {
+      background: color.adjust($accent, $lightness: -8%);
+    }
+  }
+
+  &.secondary {
+    background: transparent;
+    color: $accent;
+    border: 1.5px solid $accent;
+    text-align: center;
+
+    &:hover {
+      background: color.adjust($accent, $lightness: 35%);
+    }
+  }
+}

@@ -86,7 +86,9 @@
                 placeholder="namn@exempel.se"
                 [class.invalid]="form.controls.email.touched && form.controls.email.invalid"
               />
-              @if (form.controls.email.touched && form.controls.email.invalid) {
+              @if (form.controls.email.touched && form.controls.email.hasError('required')) {
+                <span class="error-msg">Ange din e-postadress</span>
+              } @else if (form.controls.email.touched && form.controls.email.hasError('pattern')) {
                 <span class="error-msg">Ange en giltig e-postadress</span>
               }
             </div>
@@ -100,8 +102,10 @@
                 placeholder="07X-XXX XX XX"
                 [class.invalid]="form.controls.phone.touched && form.controls.phone.invalid"
               />
-              @if (form.controls.phone.touched && form.controls.phone.invalid) {
+              @if (form.controls.phone.touched && form.controls.phone.hasError('required')) {
                 <span class="error-msg">Ange ditt telefonnummer</span>
+              } @else if (form.controls.phone.touched && form.controls.phone.hasError('pattern')) {
+                <span class="error-msg">Ange ett giltigt telefonnummer</span>
               }
             </div>
           </div>
@@ -130,6 +134,10 @@
             Tack för att du meddelade oss, {{ form.value.firstName }}. Vi hoppas vi ses en annan gång!
           </p>
         }
+        <div class="confirmation-actions">
+          <button type="button" class="action-btn primary" (click)="resetForm()">Fyll i för en till person</button>
+          <a routerLink="/" class="action-btn secondary">Tillbaka till startsidan</a>
+        </div>
       </div>
     }
   </div>
