@@ -1,13 +1,19 @@
 @use 'sass:color';
 
 // Color Variables
-$base-font-color: #9CAF88; 
+$base-font-color: #9CAF88;
 $primary-bg: color.adjust($base-font-color, $lightness: 38%);
 $secondary-bg: color.adjust($base-font-color, $lightness: 28%);
 $accent: color.adjust($base-font-color, $lightness: -20%);
 $banner-bg: color.mix($primary-bg, #f2ead6, 60%);
 $text-main: color.adjust($base-font-color, $lightness: -35%);
 $banner-text: color.adjust($text-main, $lightness: -8%);
+
+// Section backgrounds (distinct alternating tones)
+$section-bg-light: color.mix($base-font-color, #fff, 10%);
+$section-bg-medium: color.mix($base-font-color, #fff, 25%);
+$section-bg-warm: color.mix($base-font-color, #e6efe0, 18%);
+$section-bg-deep: color.mix($base-font-color, #e8eed4, 35%);
 
 // Typography
 $font-main: 'Montserrat', Arial, sans-serif;
