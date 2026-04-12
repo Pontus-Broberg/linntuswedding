@@ -48,3 +48,32 @@
   margin-bottom: 22px;
   line-height: 1;
 }
+
+@media (max-width: 600px) {
+  .countdown-banner {
+    height: 80px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    font-size: 25px;
+    // Symmetric padding: timer centered in viewport; hamburger overlays the corner (see home styles)
+  }
+
+  .count-item {
+    min-width: 48px;
+  }
+
+  .count-number {
+    font-size: 25px;
+  }
+
+  .count-sep {
+    font-size: 25px;
+    margin-bottom: 13px;
+  }
+
+  .count-label {
+    font-size: 10px;
+    margin-top: 2px;
+    letter-spacing: 0.4px;
+  }
+}

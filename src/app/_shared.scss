@@ -58,7 +58,8 @@
 
 @media (max-width: 600px) {
   .main {
-    padding-top: 80px;
+    // 80px countdown + gap so banner shadow / safe area does not cover content
+    padding-top: calc(80px + 1rem);
   }
 
   .section-inner {

@@ -46,13 +46,13 @@ export class HomeComponent {
     },
     {
       id: 'flora',
-      name: 'Hotell Flora',
+      name: 'Hotell Floras Trädgård',
       image: 'assets/hotell-flora.png',
       description:
-        'Hotell Flora är från förra sekelskiftet och har genomgått en varsam invändig totalrenovering under de senaste åren. Den gamla trädgården är en skön lummig oas att vara och njuta i.',
-      mapsLink: 'https://maps.google.com/?q=Hotell+Flora+Öregrund',
+        'Hotell Floras Trädgård är från förra sekelskiftet och har genomgått en varsam invändig totalrenovering under de senaste åren. Den gamla trädgården är en skön lummig oas att vara och njuta i.',
+      mapsLink: 'https://maps.google.com/?q=Hotell+Floras+Trädgård+Öregrund',
       bookingLink: 'https://hotellflora.se/',
-      bookingLinkText: 'Boka Hotell Flora',
+      bookingLinkText: 'Boka Hotell Floras Trädgård',
       bookingGuide: {
         title: 'Hur man bokar:',
         steps: [
