@@ -1,16 +1,46 @@
 @forward './variables';
 @use './variables' as *;
 
-// Common page layout styles
 .main {
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  background: linear-gradient(135deg, $primary-bg 60%, $secondary-bg 100%);
+  flex-direction: column;
+  align-items: center;
   padding-top: 100px;
+  background: linear-gradient(135deg, $primary-bg 60%, $secondary-bg 100%);
 }
 
+.section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.section-inner {
+  max-width: 800px;
+  width: 100%;
+  padding: 4rem 2.5rem;
+  box-sizing: border-box;
+}
+
+.section--light {
+  background: $section-bg-light;
+}
+
+.section--medium {
+  background: $section-bg-medium;
+}
+
+.section--warm {
+  background: $section-bg-warm;
+}
+
+.section--deep {
+  background: $section-bg-deep;
+}
+
+// Card layout (used by OSA and similar sub-pages)
 .content {
   background: #fff;
   padding: 3rem 2.5rem 2.5rem 2.5rem;
@@ -26,9 +56,14 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .main {
-    padding-top: 80px;
+    // 80px countdown + gap so banner shadow / safe area does not cover content
+    padding-top: calc(80px + 1rem);
+  }
+
+  .section-inner {
+    padding: 3rem 1.25rem;
   }
 
   .content {
